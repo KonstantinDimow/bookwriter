@@ -4,6 +4,7 @@
     <th>VersionsNr</th>
     <th>Inhalt</th>
     <th>Benutzer</th>
+    <th>Erstellt am</th>
   </tr>
 
   <% @chunk.versions.each do |vers|%>
@@ -15,6 +16,7 @@
         <td><%= 'Objekt wurde erstellt' %></td>
     <% end %>
     <td><%= User.find(vers.whodunnit).username %></td>
+    <td><%= vers.created_at  %></td>
   </tr>
   <% end %>
 </table>
