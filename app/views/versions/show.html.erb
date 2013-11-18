@@ -1,23 +1,28 @@
 <h2>Versionsübersicht</h2>
-<table>
-  <tr>
-    <th>VersionsNr</th>
-    <th>Inhalt</th>
-    <th>Benutzer</th>
-  </tr>
-
-  <% @chunk.versions.each do |vers|%>
-  <tr>
-    <td><%= vers.index %></td>
-    <% unless vers.reify == nil %>
-        <td><%= raw (vers.reify.content) %></td>
-    <% else %>
-        <td><%= 'Objekt wurde erstellt' %></td>
-    <% end %>
-    <td><%= User.find(vers.whodunnit).username %></td>
-  </tr>
-  <% end %>
+<table border="1">
+  <thead>
+      <tr>
+        <th>Check-Version</th>
+        <th>VersionsNr</th>
+        <th>Inhalt</th>
+        <th>Benutzer</th>
+      </tr>
+  </thead>
+  <tbody>
+      <% @chunk.versions.each do |vers|%>
+      <tr>
+        <td><%= check_box_tag 'version'  %></td>
+        <td><%= vers.index %></td>
+        <% unless vers.reify == nil %>
+            <td><%= raw (vers.reify.content) %></td>
+        <% else %>
+            <td><%= 'Objekt wurde erstellt' %></td>
+        <% end %>
+        <td><%= User.find(vers.whodunnit).username %></td>
+      </tr>
+      <% end %>
+  </tbody>
 </table>
-
+<%= button_to 'Vergleiche' %>
 <%= button_to 'Zurück', book_url(@chunk.book_id) , method: :get%>
 
