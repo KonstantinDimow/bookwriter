@@ -49,6 +49,7 @@
         <th><%= Chunk.human_attribute_name(:version) %></th>
         <% unless @book.closed? %>
             <th></th>
+            <th></th>
         <% end %>
       </tr>
       <% @book.chunks.each do |chunk| %>
@@ -59,6 +60,7 @@
             <td><%= chunk.versions.last.id unless chunk.versions == nil %></td>
             <% unless @book.closed? %>
                 <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
+                <td><%= button_to 'Versionsübersicht', @book.id.to_s << '/chunks/' << chunk.id.to_s << '/versions/show', method: :get %></td>
             <% end %>
           </tr>
       <% end %>
