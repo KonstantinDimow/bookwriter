@@ -15,6 +15,7 @@
         <td><%= 'Objekt wurde erstellt' %></td>
     <% end %>
     <td><%= User.find(vers.whodunnit).username %></td>
+    <td><%= button_to 'Revert', 'books/' << @chunk.book_id.to_s << '/versions/'<< @chunk.id.to_s << '/versions/revert/' << vers.index.to_s, method: :post%></td>
   </tr>
   <% end %>
 </table>

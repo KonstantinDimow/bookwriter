@@ -8,6 +8,7 @@ BookWriter::Application.routes.draw do
   devise_for :users
 
   get 'books/:book_id/chunks/:id/versions/show' => 'versions#show'
+  post 'books/:book_id/versions/:id/versions/revert/:version_id' => 'versions#revert_to_old_version'
 
   resources :books do
     get 'print', :on => :member
