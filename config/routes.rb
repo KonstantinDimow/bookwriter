@@ -7,6 +7,8 @@ BookWriter::Application.routes.draw do
 
   devise_for :users
 
+  get 'books/:book_id/chunks/:id/versions/show' => 'versions#show'
+
   resources :books do
     get 'print', :on => :member
     post 'close', :on => :member
