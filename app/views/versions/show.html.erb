@@ -25,6 +25,6 @@
       <% end %>
   </tbody>
 </table>
-<%= button_to 'Vergleiche' %>
+<%= button_to 'Vergleiche',compare_book_chunk_version_path, method: :get %>
 <%= button_to 'Zurück', book_url(@chunk.book_id) , method: :get%>
 
