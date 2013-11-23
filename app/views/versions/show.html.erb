@@ -1,8 +1,8 @@
 <h2>Versionsübersicht</h2>
-<table border="1">
+<table >
   <thead>
       <tr>
-        <th>Check-Version</th>
+        <th></th>
         <th>VersionsNr</th>
         <th>Inhalt</th>
         <th>Benutzer</th>
@@ -11,7 +11,9 @@
   <tbody>
       <% @chunk.versions.each do |vers|%>
       <tr>
-        <td><%= check_box_tag 'version'  %></td>
+        <td>
+          <%= radio_button_tag('version1',vers.index, :checked => false)   %>
+          <%= radio_button_tag('version2',vers.index, :checked => false)   %>
         <td><%= vers.index %></td>
         <% unless vers.reify == nil %>
             <td><%= raw (vers.reify.content) %></td>

@@ -156,6 +156,7 @@ class BooksController < ApplicationController
     end
   end
 
+
   private
   def find_all_users
     @users = User.all
