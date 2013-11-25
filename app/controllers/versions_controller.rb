@@ -2,6 +2,11 @@ class VersionsController < ApplicationController
   def show
     @chunk = Chunk.find(params[:id])
     @book = Book.find(@chunk.book_id)
+    if params[:entries].to_i > 0
+      @amount = [params[:entries].to_i,@chunk.versions.size].min
+    else
+      @amount = @chunk.versions.size
+    end
   end
 
   def revert_to_old_version
