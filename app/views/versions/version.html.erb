@@ -1,0 +1,7 @@
+<h1>Version</h1>
+
+    <% if @version.reify == nil %>
+    <div>-- Text -- </div>
+    <% else %>
+        <%= raw (@version.reify.content)%>
+    <% end %>

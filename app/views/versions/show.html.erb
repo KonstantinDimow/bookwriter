@@ -12,8 +12,8 @@
       <% @chunk.versions.each do |vers|%>
       <tr>
         <td>
-          <%= radio_button_tag('version1',vers.index, :checked => false)   %>
-          <%= radio_button_tag('version2',vers.index, :checked => false)   %>
+          <%= radio_button_tag('version1',vers.index)   %>
+          <%= radio_button_tag('version2',vers.index)   %>
         <td><%= vers.index %></td>
         <% unless vers.reify == nil %>
             <td><%= raw (vers.reify.content) %></td>
@@ -21,10 +21,11 @@
             <td><%= 'Objekt wurde erstellt' %></td>
         <% end %>
         <td><%= User.find(vers.whodunnit).username %></td>
+        <td><%= button_to 'Anzeigen',book_chunk_version_version_path(@book,@chunk,vers), method: :get %> </td>
       </tr>
       <% end %>
   </tbody>
 </table>
-<%= button_to 'Vergleiche',compare_book_chunk_version_path, method: :get %>
+<%= button_to 'Vergleiche', method: :get %>
 <%= button_to 'Zurück', book_url(@chunk.book_id) , method: :get%>
 

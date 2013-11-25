@@ -6,8 +6,8 @@ class UsersControllerTest < ActionController::TestCase
     @user = users(:mmuster)
   end
 
-  test "should get index" do
-    get :index
+  test "should get show" do
+    get :show
     assert_response :success
     assert_not_nil assigns(:users)
   end

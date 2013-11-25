@@ -3,24 +3,24 @@ BookWriter::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
 
   # Startseite der Applikation
-  root :to => 'books#index'
+  root :to => 'books#show'
 
   devise_for :users
 
-  get 'books/:book_id/chunks/:id/versions/show' => 'versions#show'
+  #get 'books/:book_id/chunks/:id/versions/show' => 'versions#show'
 
     resources :books do
       get 'print', :on => :member
       post 'close', :on => :member
       get 'new_edition', :on => :member
       resources :chunks, :except => [:index] do
-        resources :versions, :except => [:index] do
-          get 'compare', :on => :member
+        resources :versions, :except => [:index]do
+          get 'version', :except => [:index]
         end
+    end
+    end
 
-      end
-  end
-
+  #match 'version/:id/vers_id/' =>    'version#version'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -69,8 +69,8 @@ BookWriter::Application.routes.draw do
   #   end
 
   # You can have the root of your site routed with "root"
-  # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  # just remember to delete public/show.html.
+  # root :to => 'welcome#show'
 
   # See how all your routes lay out with "rake routes"
 

@@ -5,13 +5,12 @@ class ChunksController < ApplicationController
   before_filter :find_book
 
 =begin
-  def index
+  def show
     @book = Book.find(params[:book_id])
     @chunks = @book.chunks
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @chunks }
+      format.html # show.html.erb      format.json { render json: @chunks }
     end
   end
 =end
