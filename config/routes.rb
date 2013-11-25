@@ -8,13 +8,12 @@ BookWriter::Application.routes.draw do
   devise_for :users
 
   get 'books/:book_id/chunks/:id/versions/show' => 'versions#show'
-    resources :books do
-      get 'print', :on => :member
-      post 'close', :on => :member
-      get 'new_edition', :on => :member
-      resources :chunks, :except => [:index] do
-        resources :versions, :except => [:index]
-      end
+
+  resources :books do
+    get 'print', :on => :member
+    post 'close', :on => :member
+    get 'new_edition', :on => :member
+    resources :chunks, :except => [:index]
   end
 
   # The priority is based upon order of creation:

@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     respond_to do |format|
-      format.html # show11.html.erb
+      format.html # show.html.erb
       format.json { render json: @user }
     end
   end

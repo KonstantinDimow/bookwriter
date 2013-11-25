@@ -2,7 +2,6 @@
 
 de:
   views:
-    vesionshow: Versionsübersicht
     show: Anzeigen
     edit: Editieren
     destroy: Löschen
