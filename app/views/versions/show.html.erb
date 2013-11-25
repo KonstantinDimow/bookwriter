@@ -1,9 +1,10 @@
-<h2>Versionsübersicht</h2>
+<h2>Versionsübersicht: <%= @book.title %> / <%= @chunk.title %></h2>
 <table>
   <tr>
     <th>VersionsNr</th>
     <th>Inhalt</th>
     <th>Benutzer</th>
+    <th>Erstellt am</th>
   </tr>
 
   <% @chunk.versions.each do |vers|%>
@@ -12,6 +13,7 @@
         <td><%= vers.index %></td>
         <td><%= raw (vers.reify.content) %></td>
         <td><%= User.find(vers.whodunnit).username %></td>
+        <td><%= vers.created_at  %></td>
         <td><%= button_to 'Revert', @chunk.book_id.to_s << @chunk.id.to_s << '/revert/' << vers.index.to_s , method: :post%></td>
       </tr>
       <% end %>

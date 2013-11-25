@@ -1,6 +1,7 @@
 class VersionsController < ApplicationController
   def show
     @chunk = Chunk.find(params[:id])
+    @book = Book.find(params[:id])
   end
 
   def revert_to_old_version
