@@ -18,6 +18,7 @@
         <td><%= User.find(vers.whodunnit).username %></td>
         <td><%= vers.created_at  %></td>
         <td><%= button_to 'Revert', @chunk.book_id.to_s << @chunk.id.to_s << '/revert/' << vers.index.to_s , method: :post%></td>
+        <td><%= button_to 'Show Version'  %></td>
       </tr>
       <% end %>
   <% end %>
