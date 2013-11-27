@@ -10,4 +10,10 @@ class VersionsController < ApplicationController
     @chunk.versions[params[:old_version_id].to_i].reify.save!
     redirect_to  edit_book_chunk_path
   end
+
+  def version
+    @book = Book.find(params[:book_id])
+    @chunk = Chunk.find(params[:chunk_id])
+    @version = Version.find(params[:version_id])
+  end
 end
