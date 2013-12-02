@@ -15,4 +15,6 @@ class VersionsController < ApplicationController
     @chunk.versions[params[:old_version_id].to_i].reify.save!
     redirect_to  edit_book_chunk_path
   end
+
+
 end

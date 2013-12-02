@@ -1,6 +1,6 @@
 <h1><%= t 'views.book.index.title' %></h1>
 
-<table>
+<table class="table max700">
   <tr>
     <th><%= Book.human_attribute_name(:title) %></th>
     <th><%= Book.human_attribute_name(:edition) %></th>
@@ -24,4 +24,4 @@
 
 <br/>
 
-<%= button_to I18n.t('views.book.index.new'), new_book_path, method: :get %>
+<%= button_to I18n.t('views.book.index.new'), new_book_path, method: :get,:class => 'btn btn-default' %>

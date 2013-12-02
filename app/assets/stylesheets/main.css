@@ -2,6 +2,10 @@ body {
     font-family: helvetica;
 }
 
+div#layout_container {
+    margin-bottom: 60px;
+}
+
 th {
     /* top right bottom left */
     padding: 0 10px 10px 0;
@@ -55,4 +59,8 @@ td {
     padding: 7px;
     background-color: #999999;
     color: #ffffff;
+}
+
+.max700 {
+    max-width: 700px;
 }

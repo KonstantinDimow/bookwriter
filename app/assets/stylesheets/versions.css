@@ -16,3 +16,21 @@ td {
     width: 200px;
 
 }
+
+#selectEntryAmount {
+    text-align: center;
+    font-size: 13px;
+}
+
+#selectEntryAmount a {
+    color: #000;
+}
+
+div#content {
+    display: block;
+
+    margin: 0 auto;
+
+    max-width: 845px;
+    padding-left: 10px;
+}

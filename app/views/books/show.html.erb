@@ -29,19 +29,19 @@
 
 <div class="horizontal">
   <% unless @book.closed? %>
-      <%= button_to I18n.t('views.edit'), edit_book_path(@book), method: :get %>
-      <%= button_to I18n.t('views.book.close.close_book'), close_book_path(@book), data: {confirm: I18n.t('views.book.close.sure')} %>
+      <%= button_to I18n.t('views.edit'), edit_book_path(@book), method: :get, :class => 'btn btn-default' %>
+      <%= button_to I18n.t('views.book.close.close_book'), close_book_path(@book), data: {confirm: I18n.t('views.book.close.sure')},:class => 'btn btn-default' %>
   <% end %>
-  <%= button_to I18n.t('views.book.new_edition'), new_edition_book_path(@book), method: :get %>
-  <%= button_to I18n.t('views.book.export.pdf'), print_book_path(@book, :format => 'pdf'), method: :get %>
-  <%= button_to I18n.t('views.destroy'), @book, method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %>
+  <%= button_to I18n.t('views.book.new_edition'), new_edition_book_path(@book), method: :get,:class => 'btn btn-default' %>
+  <%= button_to I18n.t('views.book.export.pdf'), print_book_path(@book, :format => 'pdf'), method: :get,:class => 'btn btn-default' %>
+  <%= button_to I18n.t('views.destroy'), @book, method: :delete, data: {confirm: I18n.t('views.are_you_sure')},:class => 'btn btn-default' %>
 </div>
 
 <br/><br/><br/>
 
 <h2><%= t 'views.chunk.index.title' %></h2>
 <% if @book.has_chunks? %>
-    <table>
+    <table class="table max700">
       <tr>
         <th><%= Chunk.human_attribute_name(:title) %></th>
         <th><%= Chunk.human_attribute_name(:section) %></th>
@@ -59,7 +59,7 @@
             <td><%= chunk.username %></td>
             <td><%= chunk.versions.last.index unless chunk.versions == nil %></td>
             <% unless @book.closed? %>
-                <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
+                <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, data: {confirm: I18n.t('views.are_you_sure')},:class => 'btn btn-default btn-xs' %> </td>
                 <td><%= link_to 'Versionsübersicht', { :controller => 'versions', :action => 'show', :id => chunk.id, :book_id => @book.id, :entries => '10'}, method: :get %></td>
             <% end %>
           </tr>
@@ -72,9 +72,9 @@
 <br/>
 
 <% unless @book.closed? %>
-    <%= button_to I18n.t('views.chunk.index.new'), new_book_chunk_path(@book), method: :get %>
+    <%= button_to I18n.t('views.chunk.index.new'), new_book_chunk_path(@book), method: :get,:class => 'btn btn-default' %>
 <% end %>
 
 <br/><br/>
 
-<%= button_to I18n.t('views.back'), books_path, method: :get %>
+<%= button_to I18n.t('views.back'), books_path, method: :get, :class => 'btn btn-default' %>
