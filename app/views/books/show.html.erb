@@ -57,10 +57,10 @@
             <td><%= link_to chunk.title, @book.closed? ? book_chunk_path(@book, chunk) : edit_book_chunk_path(@book, chunk) %></td>
             <td><%= chunk.section %></td>
             <td><%= chunk.username %></td>
-            <td><%= chunk.versions.last.id unless chunk.versions == nil %></td>
+            <td><%= chunk.versions.last.index unless chunk.versions == nil %></td>
             <% unless @book.closed? %>
                 <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk), method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
-                <td><%= button_to 'Versionsübersicht', @book.id.to_s << '/chunks/' << chunk.id.to_s << '/versions/show', method: :get %></td>
+                <td><%= link_to 'Versionsübersicht', { :controller => 'versions', :action => 'show', :id => chunk.id, :book_id => @book.id, :entries => '10'}, method: :get %></td>
             <% end %>
           </tr>
       <% end %>
