@@ -1,3 +1,18 @@
 body {
-    color: #cc0000;
+
+}
+
+td {
+    padding: 0 10px;
+
+}
+
+.tdcenter {
+    text-align: center;
+}
+
+
+.version-content {
+    width: 200px;
+
 }
