@@ -12,13 +12,14 @@
 <div id="layout_container">
 
   <div id="top">
-
+    <div id="navbar">
     <% if user_signed_in? %>
-        <%= link_to I18n.t('views.layout.home'), books_path %> |
-        <%= "#{I18n.t('views.layout.account')}: #{current_user.username}" %> |
-        <%= link_to I18n.t('views.layout.my_account'), edit_user_registration_path %> |
-        <%= link_to I18n.t('views.layout.logout'), destroy_user_session_path, method: :delete %>
+        <span id="konto"><%= "#{I18n.t('views.layout.account')}: #{current_user.username}" %></span>
+        <span class="menu-button"><%= link_to I18n.t('views.layout.home'), books_path %></span>
+        <span class="menu-button"><%= link_to I18n.t('views.layout.my_account'), edit_user_registration_path %></span>
+        <span class="menu-button" id="logout-button"><%= link_to I18n.t('views.layout.logout'), destroy_user_session_path, method: :delete %></span>
     <% end %>
+    </div>
 
   </div>
 
@@ -41,6 +42,6 @@
 
 </div>
 
-<div>footer</div>
+<div></div>
 </body>
 </html>
