@@ -16,4 +16,10 @@ class VersionsController < ApplicationController
     @chunk = Chunk.find(params[:chunk_id])
     @version = Version.find(params[:version_id])
   end
+
+  def compare
+   @chunk = Chunk.find(params[:id])
+   @version1 = @chunk.versions[params[:version1].to_i]
+   @version2 = @chunk.versions[params[:version2].to_i]
+  end
 end
