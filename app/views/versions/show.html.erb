@@ -1,6 +1,3 @@
-%head
-= yield :head
-
 <h2>Versionsübersicht: <%= @book.title %> / <%= @chunk.title %></h2>
 
 <%= form_tag(compare_book_chunk_version_path, method: :post) do %>
@@ -13,6 +10,21 @@
     <th>Erstellt am</th>
     <th></th>
     <th></th>
+  </tr>
+
+  <tr>
+    <td>
+      <%= radio_button_tag 'version1', 'chunk' %>
+      <%= radio_button_tag 'version2', 'chunk'%>
+    </td>
+    <td>Current</td>
+    <td>
+      <%= raw(@chunk.content) %>
+    </td>
+    <td><%= User.find(@chunk.user_id).username %></td>
+    <td><%= @chunk.created_at  %></td>
+    <td></td>
+    <td><%= button_to 'Show Version',book_chunk_path(@book,@chunk.id), method: :get%></td>
   </tr>
 
   <% @chunk.versions.each do |vers|%>
@@ -31,20 +43,7 @@
       </tr>
       <% end %>
   <% end %>
-  <tr>
-    <td>
-      <%= radio_button_tag 'version1', 'chunk' %>
-      <%= radio_button_tag 'version2', 'chunk'%>
-    </td>
-    <td>Current</td>
-    <td>
-      <%= raw(@chunk.content) %>
-    </td>
-    <td><%= User.find(@chunk.user_id).username %></td>
-    <td><%= @chunk.created_at  %></td>
-    <td></td>
-    <td><%= button_to 'Show Version',book_chunk_path(@book,@chunk.id), method: :get%></td>
-  </tr>
+
 
 </table>
 <%= submit_tag 'Vergleichen' %>
