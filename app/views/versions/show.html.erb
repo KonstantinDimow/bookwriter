@@ -48,7 +48,7 @@
         <td><%= button_to 'Show Version',book_chunk_version_version_path(@book,@chunk,vers.id), method: :get  %></td>
       </tr>
       <% end %>
-  <%} %>
+  <% end %>
   <tr>
     <td colspan="5">
       <div id="selectEntryAmount">
@@ -59,7 +59,7 @@
       </div>
     </td>
   </tr>
-  <% end %>
+
 
 
 </table>
@@ -67,4 +67,3 @@
 <% end %>
 
 <%= button_to 'Zurück', book_url(@chunk.book_id) , method: :get%>
-
