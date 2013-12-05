@@ -4,22 +4,48 @@
 
 <table class="table table-striped">
 
+
+<%= form_tag(compare_book_chunk_version_path, method: :post) do %>
+<table>
   <tr>
     <th>Version</th>
+    <th></th>
+    <th>VersionsNr</th>
     <th>Inhalt</th>
     <th>Benutzer</th>
     <th>Erstellt am</th>
     <th></th>
+    <th></th>
   </tr>
 
-  <% @amount.times { |i| vers = @chunk.versions[@chunk.versions.last.index - i] %>
+  <tr>
+    <td>
+      <%= radio_button_tag 'version1', 'chunk' %>
+      <%= radio_button_tag 'version2', 'chunk'%>
+    </td>
+    <td>Current</td>
+    <td>
+      <%= raw(@chunk.content) %>
+    </td>
+    <td><%= User.find(@chunk.user_id).username %></td>
+    <td><%= @chunk.created_at  %></td>
+    <td></td>
+    <td><%= button_to 'Show Version',book_chunk_path(@book,@chunk.id), method: :get%></td>
+  </tr>
+
+  <% @chunk.versions.each do |vers|%>
     <% unless vers.index == 0 %>
       <tr>
-        <td ><%= vers.index %></td>
-        <td class="version-content"><%= raw (vers.reify.content) %></td>
+        <td>
+              <%= radio_button_tag 'version1',vers.index, vers.index ==1? true: false %>
+              <%= radio_button_tag 'version2',vers.index%>
+        </td>
+        <td><%= vers.index %></td>
+        <td><%= raw (vers.reify.content) %></td>
         <td><%= User.find(vers.whodunnit).username %></td>
         <td><%= vers.created_at  %></td>
-        <td ><%= button_to 'Revert', @chunk.book_id.to_s << @chunk.id.to_s << '/revert/' << vers.index.to_s , method: :post, :class => 'btn btn-default btn-xs'%></td>
+        <td><%= button_to 'Revert', @chunk.book_id.to_s << @chunk.id.to_s << '/revert/' << vers.index.to_s , method: :post%></td>
+        <td><%= button_to 'Show Version',book_chunk_version_version_path(@book,@chunk,vers.id), method: :get  %></td>
       </tr>
       <% end %>
   <%} %>
@@ -33,7 +59,12 @@
       </div>
     </td>
   </tr>
-</table>
+  <% end %>
 
-<%= button_to 'Zurück', book_url(@chunk.book_id) , method: :get,:class => 'btn btn-default' %>
+
+</table>
+<%= submit_tag 'Vergleichen' %>
+<% end %>
+
+<%= button_to 'Zurück', book_url(@chunk.book_id) , method: :get%>
 

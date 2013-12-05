@@ -8,6 +8,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="debug" style="background-color:yellow">
+     params = <%= params %>
+    <br>user_session = <%= user_session %>
+    <br>request.url = <%= request.url %>
+    <br>current_user = <%= current_user && current_user.id %>
+    <br>@current_book = <%= @current_book && @current_book.id %>
+    <br>@current_chunk = <%= @current_chunk && @current_chunk.id %>
+</div>
 
 <div id="layout_container">
 
