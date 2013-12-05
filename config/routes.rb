@@ -9,14 +9,16 @@ BookWriter::Application.routes.draw do
 
   get 'books/:book_id/chunks/:id/versions/show' => 'versions#show'
   post 'books/:book_id/chunks/:id/versions/:current_id/revert/:old_version_id' => 'versions#revert_to_old_version'
-  get 'books/:book_id/chunks/:id/version/compare' => 'versions#compare'
+  #post 'books/:book_id/chunks/:id/version/compare' => 'versions#compare'
 
   resources :books do
     get 'print', :on => :member
     post 'close', :on => :member
     get 'new_edition', :on => :member
     resources :chunks, :except => [:index] do
-      resources :versions, :except => [:index] do
+
+      resources :versions,:except =>[:index] do
+        post 'compare', :on => :member
         get 'version', :except => [:index]
       end
     end

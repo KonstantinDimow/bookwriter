@@ -3,8 +3,8 @@
 
 <h2>Versionsübersicht: <%= @book.title %> / <%= @chunk.title %></h2>
 
-<%= form_tag( {:controller => 'versions',:action => 'compare'}, method:"get",:class =>'versiontable') do %>
-<table border="1">
+<%= form_tag(compare_book_chunk_version_path, method: :post) do %>
+<table>
   <tr>
     <th></th>
     <th>VersionsNr</th>
@@ -19,10 +19,8 @@
     <% unless vers.index == 0 %>
       <tr>
         <td>
-          <div>
-              <%= radio_button_tag 'version1',vers.index, vers.index == 1 ? checked= 'true' : checked ='false'%>
+              <%= radio_button_tag 'version1',vers.index, vers.index ==1? true: false %>
               <%= radio_button_tag 'version2',vers.index%>
-          </div>
         </td>
         <td><%= vers.index %></td>
         <td><%= raw (vers.reify.content) %></td>
@@ -35,8 +33,8 @@
   <% end %>
   <tr>
     <td>
-      <%= radio_button_tag 'version1', "123"%>
-      <%= radio_button_tag 'version2', "123"%>
+      <%= radio_button_tag 'version1', 'chunk' %>
+      <%= radio_button_tag 'version2', 'chunk'%>
     </td>
     <td>Current</td>
     <td>
