@@ -2,8 +2,7 @@
 
 <h2>Versionsübersicht: <%= @book.title %> / <%= @chunk.title %></h2>
 
-
-
+<%= params %>
 
 <%= form_tag(compare_book_chunk_version_path, method: :post) do %>
 <table class="table table-striped">
@@ -20,7 +19,7 @@
   <tr>
     <td>
       <%= radio_button_tag 'version1', 'chunk' %>
-      <%= radio_button_tag 'version2', 'chunk'%>
+      <%= radio_button_tag 'version2', 'chunk', true%>
     </td>
     <td>Current</td>
     <td>
@@ -32,12 +31,13 @@
     <td><%= button_to 'Show Version',book_chunk_path(@book,@chunk.id), method: :get%></td>
   </tr>
 
-  <% @chunk.versions.each do |vers|%>
+  <!--% @chunk.versions.each do |vers|%-->
+  <% @entries.times do |i| vers = @chunk.versions[@chunk.versions.last.index - i]%>
     <% unless vers.index == 0 %>
       <tr>
         <td>
-              <%= radio_button_tag 'version1',vers.index, vers.index ==1? true: false %>
-              <%= radio_button_tag 'version2',vers.index%>
+            <%= radio_button_tag 'version1',vers.index, vers.index == @chunk.versions.last.index ? true: false %>
+            <%= radio_button_tag 'version2',vers.index%>
         </td>
         <td><%= vers.index %></td>
         <td><%= raw (vers.reify.content) %></td>
@@ -49,7 +49,7 @@
       <% end %>
   <% end %>
   <tr>
-    <td colspan="5">
+    <td colspan="7">
       <div id="selectEntryAmount">
         <%=link_to '10', {:controller => 'versions', :action => 'show', :entries => '10'}%> |
         <%=link_to '25', {:controller => 'versions', :action => 'show', :entries => '25'}%> |
