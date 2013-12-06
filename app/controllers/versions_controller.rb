@@ -1,5 +1,6 @@
 class VersionsController < ApplicationController
   def show
+    @content_size = 100
     @chunk = Chunk.find(params[:chunk_id])
     @book = Book.find(@chunk.book_id)
     if params[:entries].to_i > 0
