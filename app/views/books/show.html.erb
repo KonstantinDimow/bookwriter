@@ -61,7 +61,6 @@
             <% unless @book.closed? %>
                 <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk.id), method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
                 <td style="background-color: red"><%= button_to 'Versionsübersicht' ,book_chunk_version_path(@book,chunk), method: :get  %></td>
-                <td><%= button_to 'Versionsübersicht', @book.id.to_s << '/chunks/' << chunk.id.to_s << '/versions/show', method: :get %></td>
             <% end %>
           </tr>
       <% end %>
