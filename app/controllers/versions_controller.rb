@@ -2,10 +2,14 @@ class VersionsController < ApplicationController
   def show
     @chunk = Chunk.find(params[:chunk_id])
     @book = Book.find(@chunk.book_id)
-    if params[:entries].to_i > 0
-      @entries = [params[:entries].to_i,@chunk.versions.size].min
+    if params[:entries]
+      if params[:entries].to_i > 0
+        @entries = [params[:entries].to_i,@chunk.versions.size].min
+      else
+        @entries = @chunk.versions.size
+      end
     else
-      @entries = @chunk.versions.size
+      @entries = 10
     end
   end
 
