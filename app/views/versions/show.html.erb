@@ -2,8 +2,6 @@
 
 <h2>Versionsübersicht: <%= @book.title %> / <%= @chunk.title %></h2>
 
-<%= params %>
-
 <%= form_tag(compare_book_chunk_version_path, method: :post) do %>
 <table class="table table-striped">
   <tr>
