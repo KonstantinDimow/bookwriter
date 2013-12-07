@@ -27,6 +27,7 @@ class VersionsController < ApplicationController
   end
 
   def compare
+    @book = Book.find(params[:book_id])
     @chunk = Chunk.find(params[:chunk_id])                               #Chunk laden
     if (params[:version1] == 'chunk')                                    #Wenn version1==parameter, dann
       @version1 = Chunk.find(params[:chunk_id]).content                  #aktuelle Version laden

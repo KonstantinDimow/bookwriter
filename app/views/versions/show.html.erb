@@ -5,8 +5,8 @@
 <%= form_tag(compare_book_chunk_version_path, method: :post) do %>
 <table class="table table-striped">
   <tr>
+    <th></th>
     <th>Version</th>
-    <th>VersionsNr</th>
     <th>Inhalt</th>
     <th>Benutzer</th>
     <th>Erstellt am</th>
@@ -26,7 +26,7 @@
     <td><%= User.find(@chunk.user_id).username %></td>
     <td><%= @chunk.created_at.strftime("%d.%m.%Y %H:%M:%S")  %></td>
     <td></td>
-    <td><%= button_to 'Show Version',book_chunk_path(@book,@chunk.id), method: :get%></td>
+    <td><%= button_to 'Ansehen',book_chunk_path(@book,@chunk.id), method: :get,:class => 'btn btn-default btn-xs'%></td>
   </tr>
 
   <!--% @chunk.versions.each do |vers|%-->
@@ -41,8 +41,8 @@
         <td><%= raw (vers.reify.content[0..@content_size]) %></td>
         <td><%= User.find(vers.whodunnit).username %></td>
         <td><%= vers.created_at.strftime("%d.%m.%Y %H:%M:%S")  %></td>
-        <td><%= button_to 'Revert', @chunk.book_id.to_s << @chunk.id.to_s << '/revert/' << vers.index.to_s , method: :post%></td>
-        <td><%= button_to 'Show Version',book_chunk_version_version_path(@book,@chunk,vers.id), method: :get  %></td>
+        <td><%= button_to 'Anwenden', @chunk.book_id.to_s << @chunk.id.to_s << '/revert/' << vers.index.to_s , method: :post,:class => 'btn btn-default btn-xs' %></td>
+        <td><%= button_to 'Ansehen',book_chunk_version_version_path(@book,@chunk,vers.id), method: :get,:class => 'btn btn-default btn-xs'  %></td>
       </tr>
       <% end %>
   <% end %>
@@ -65,4 +65,4 @@
     </div>
 <% end %>
 
-<%= button_to 'Zurück', book_url(@chunk.book_id) , method: :get, :class => 'btn btn-default'%>
+<%= button_to 'Zurück', book_url(@chunk.book_id) , method: :get, :class => 'btn btn-default backbutton'%>
