@@ -24,7 +24,7 @@
       <%= raw(@chunk.content[0..@content_size]) %>
     </td>
     <td><%= User.find(@chunk.user_id).username %></td>
-    <td><%= @chunk.created_at  %></td>
+    <td><%= @chunk.created_at.strftime("%d.%m.%Y %H:%M:%S")  %></td>
     <td></td>
     <td><%= button_to 'Show Version',book_chunk_path(@book,@chunk.id), method: :get%></td>
   </tr>
@@ -40,7 +40,7 @@
         <td><%= vers.index %></td>
         <td><%= raw (vers.reify.content[0..@content_size]) %></td>
         <td><%= User.find(vers.whodunnit).username %></td>
-        <td><%= vers.created_at  %></td>
+        <td><%= vers.created_at.strftime("%d.%m.%Y %H:%M:%S")  %></td>
         <td><%= button_to 'Revert', @chunk.book_id.to_s << @chunk.id.to_s << '/revert/' << vers.index.to_s , method: :post%></td>
         <td><%= button_to 'Show Version',book_chunk_version_version_path(@book,@chunk,vers.id), method: :get  %></td>
       </tr>
@@ -60,7 +60,9 @@
 
 
 </table>
-<%= submit_tag 'Vergleichen' %>
+    <div class="submitbutton">
+        <%= submit_tag 'Vergleichen' , :class => 'btn btn-default'%>
+    </div>
 <% end %>
 
-<%= button_to 'Zurück', book_url(@chunk.book_id) , method: :get%>
+<%= button_to 'Zurück', book_url(@chunk.book_id) , method: :get, :class => 'btn btn-default'%>
