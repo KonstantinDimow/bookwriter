@@ -64,3 +64,11 @@ td {
 .max700 {
     max-width: 700px;
 }
+
+.backbutton {
+    margin-top: 20px;
+}
+
+.danger:hover {
+     background-color: #f18989 !important;
+}

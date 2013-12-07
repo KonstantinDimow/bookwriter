@@ -1,6 +1,6 @@
 <h1>VersionsVergleich</h1>
 
-<table>
+<table class="table table-striped max700">
   <tr>
     <th>version1</th>
     <th>version2</th>
@@ -12,3 +12,5 @@
   </tr>
 
 </table>
+
+<%= button_to 'Zurück', book_chunk_version_path(@book,@chunk.id), method: :get, :class => 'btn btn-default backbutton' %>

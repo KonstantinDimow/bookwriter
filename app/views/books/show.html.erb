@@ -34,7 +34,7 @@
   <% end %>
   <%= button_to I18n.t('views.book.new_edition'), new_edition_book_path(@book), method: :get,:class => 'btn btn-default' %>
   <%= button_to I18n.t('views.book.export.pdf'), print_book_path(@book, :format => 'pdf'), method: :get,:class => 'btn btn-default' %>
-  <%= button_to I18n.t('views.destroy'), @book, method: :delete, data: {confirm: I18n.t('views.are_you_sure')},:class => 'btn btn-default' %>
+  <%= button_to I18n.t('views.destroy'), @book, method: :delete, data: {confirm: I18n.t('views.are_you_sure')},:class => 'btn btn-default danger' %>
 </div>
 
 <br/><br/><br/>
@@ -59,8 +59,8 @@
             <td><%= chunk.username %></td>
             <td><%= chunk.versions.last.index unless chunk.versions == nil %></td>
             <% unless @book.closed? %>
-                <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk.id), method: :delete, data: {confirm: I18n.t('views.are_you_sure')} %> </td>
-                <td style="background-color: red"><%= button_to 'Versionsübersicht' ,book_chunk_version_path(@book,chunk), method: :get  %></td>
+                <td><%= button_to I18n.t('views.destroy'), book_chunk_path(@book, chunk.id), method: :delete, data: {confirm: I18n.t('views.are_you_sure')},:class => 'btn btn-default btn-xs danger' %> </td>
+                <td><%= button_to 'Versionsübersicht' ,book_chunk_version_path(@book,chunk), method: :get,:class => 'btn btn-default btn-xs'  %></td>
             <% end %>
           </tr>
       <% end %>
@@ -77,4 +77,4 @@
 
 <br/><br/>
 
-<%= button_to I18n.t('views.back'), books_path, method: :get, :class => 'btn btn-default' %>
+<%= button_to I18n.t('views.back'), books_path, method: :get, :class => 'btn btn-default backbutton' %>

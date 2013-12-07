@@ -27,6 +27,7 @@ class VersionsController < ApplicationController
   end
 
   def compare
+    @book = Book.find(params[:book_id])
     @choice = {}
     i = 0
     params.each do |p|
