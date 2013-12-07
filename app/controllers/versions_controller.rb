@@ -27,16 +27,27 @@ class VersionsController < ApplicationController
   end
 
   def compare
+    @choice = {}
+    i = 0
+    params.each do |p|
+      if p[0][0..3].eql?('vers')
+        @choice[i] = p[1]
+        i = i + 1
+      end
+    end
+
     @chunk = Chunk.find(params[:chunk_id])                               #Chunk laden
-    if (params[:version1] == 'chunk')                                    #Wenn version1==parameter, dann
+    if (@choice[0] == '0')                                    #Wenn version1==parameter, dann
       @version1 = Chunk.find(params[:chunk_id]).content                  #aktuelle Version laden
     else                                                                 #sonst
-      @version1 = @chunk.versions[params[:version1].to_i].reify.content  #die gewählte version laden
+      #@version1 = @chunk.versions[params[:version1].to_i].reify.content  #die gewählte version laden
+      @version1 = @chunk.versions[@choice[0].to_i].reify.content  #die gewählte version laden
     end
-    if (params[:version2]== 'chunk')                                     #analog zu Version2
+    if (@choice[1] == '0')                                     #analog zu Version2
       @version2 = Chunk.find(params[:chunk_id]).content
     else
-      @version2 = @chunk.versions[params[:version2].to_i].reify.content
+      #@version2 = @chunk.versions[params[:version2].to_i].reify.content
+      @version2 = @chunk.versions[@choice[1].to_i].reify.content
     end
   end
 

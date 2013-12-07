@@ -1,0 +1,64 @@
+/**
+ * Created with JetBrains RubyMine.
+ * User: harry
+ * Date: 06.12.13
+ * Time: 10:54
+ * To change this template use File | Settings | File Templates.
+ */
+var choice = new Array();
+//var choice2;
+
+$(document).ready(
+  function()
+    {
+        var j = 0;
+        var a = $("input:checked").each(
+            function()
+            {
+                choice[j] = $(this).val();
+                j++;
+                console.log(choice[j - 1]);
+            });
+
+        if (choice[0] != null && choice[1] != null)
+        {
+            $("#compare").prop('disabled', false);
+        } else
+        {
+            $("#compare").prop('disabled', true);
+        }
+    }
+);
+
+function setChoice(index)
+{
+    if ( $("#vers" + index).is(':checked'))                     // Wenn ein neuer Haken gesetzt wurde
+    {
+        if (choice[1] != null)
+        {
+           $("#vers" + choice[1]).prop('checked', false);         // zu letzt gesetzte Haken entfernen
+        }
+        choice[1] = choice[0];
+        choice[0] = index;
+    } else                                                  // Wenn ein Haken weggenommen wurde
+    {
+        if (index == choice[0])                               // wenn erster haken gelöscht wurde
+        {                                                   // dann wird der hintere nach vorn gezogen
+            choice[0] = choice[1];
+            choice[1] = null;
+        } else if (index == choice[1])                        // wenn letzer haken gelöscht wurde
+        {
+
+            choice[1] = null;                                 // haken wird einfach nur entfernt
+        }
+    }
+    console.log(choice[0] + "+" + choice[1]);                         // debug ausgaben
+
+    if (choice[0] != null && choice[1] != null)
+    {
+        $("#compare").prop('disabled', false);
+    } else
+    {
+        $("#compare").prop('disabled', true);
+    }
+}
