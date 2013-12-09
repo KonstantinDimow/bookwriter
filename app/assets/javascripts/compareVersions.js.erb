@@ -8,53 +8,51 @@
 var choice = new Array();
 //var choice2;
 
-$(document).ready(
-  function()
-    {
+$(document).ready(                                                // Funktion wird nach vollständig geladener Seite ausgeführt
+  function()                                                      // Sie prüft ob Versionen (Checkboxen) ausgewählt sind und
+    {                                                             // speichert diese in das choice-Array
         var j = 0;
-        var a = $("input:checked").each(
+        var a = $("input:checked").each(                          // Durchlauf aller ausgwählten Checkboxen
             function()
             {
-                choice[j] = $(this).val();
+                choice[j] = $(this).val();                        // Speicherung des Values in das Choice-Array
                 j++;
-                console.log(choice[j - 1]);
             });
 
-        if (choice[0] != null && choice[1] != null)
+        if (choice[0] != null && choice[1] != null)               // Prüft ob zwei Versionen gewählt sind
         {
-            $("#compare").prop('disabled', false);
+            $("#compare").prop('disabled', false);                // Wenn NEIN: dann Vergleichs-Button deaktivieren
         } else
         {
-            $("#compare").prop('disabled', true);
+            $("#compare").prop('disabled', true);                 // Wenn Ja: dann Vergleichs-Button aktivieren
         }
     }
 );
 
-function setChoice(index)
+function setChoice(index)                                         // Wird beim Klick auf eine Checkbox ausgeführt
 {
-    if ( $("#vers" + index).is(':checked'))                     // Wenn ein neuer Haken gesetzt wurde
+    if ( $("#vers" + index).is(':checked'))                       // Wenn ein neuer Haken gesetzt wurde
     {
-        if (choice[1] != null)
+        if (choice[1] != null)                                    // es wird geprüft ob ein Hacken wieder weggenommen werden muss
         {
            $("#vers" + choice[1]).prop('checked', false);         // zu letzt gesetzte Haken entfernen
         }
-        choice[1] = choice[0];
-        choice[0] = index;
-    } else                                                  // Wenn ein Haken weggenommen wurde
+        choice[1] = choice[0];                                    // zuletzt gewählte Version in den in den Platz für den Vorletzten verschieben
+        choice[0] = index;                                        // neu gewählte Version in den zu letztgewählten Platz speichern
+    } else                                                        // Wenn ein Haken weggenommen wurde
     {
-        if (index == choice[0])                               // wenn erster haken gelöscht wurde
-        {                                                   // dann wird der hintere nach vorn gezogen
+        if (index == choice[0])                                   // wenn erster haken gelöscht wurde
+        {                                                         // dann wird der hintere nach vorn gezogen
             choice[0] = choice[1];
             choice[1] = null;
-        } else if (index == choice[1])                        // wenn letzer haken gelöscht wurde
+        } else if (index == choice[1])                            // wenn letzer haken gelöscht wurde
         {
-
-            choice[1] = null;                                 // haken wird einfach nur entfernt
+            choice[1] = null;                                     // haken wird einfach nur entfernt
         }
     }
-    console.log(choice[0] + "+" + choice[1]);                         // debug ausgaben
+    console.log(choice[0] + "+" + choice[1]);                     // debug ausgaben
 
-    if (choice[0] != null && choice[1] != null)
+    if (choice[0] != null && choice[1] != null)                   // Prüft ob zwei Versionen gewählt sind (siehe oben)
     {
         $("#compare").prop('disabled', false);
     } else

@@ -1,6 +1,7 @@
 <h1>Version</h1>
 
 <div class="version">
-  <%= raw(@version.reify.content) %>
-
+  <%= raw(@version) %>
 </div>
+
+<%= button_to 'Zurück', :back, method: :get, :class => 'btn btn-default backbutton' %>
